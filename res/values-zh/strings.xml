@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">都读</string>
+	
+	<string name="color">颜色</string>
+	<string name="color_picker">选颜色</string>
+	<string name="linewidth_prompt">选宽度</string>
+	<string name="linewidth_picker">选宽度</string>
+	
+	<string name="MarkMyBook">收藏</string>
+	<string name="UnMarkMyBook">取消收藏</string>
+	
+	<string name="loadPage">加载页</string>
+	<string name="advertise_dialog_title">提示</string>
+	<string name="advertise_dialog_prompt">输入页名</string>
+	<string name="rewardImageDesc">奖励</string>
+	<string name="teacher_mode">教</string>
+	<string name="student_mode">学</string>
+	<string name="no_such_mode">NoSuchMode</string>
+	
+	<!-- page editor -->
+	<string name="browse_mode">浏览</string>
+	<string name="draw_mode">Draw</string>
+	<string name="select_mode">Select</string>
+	<string name="script_mode">Script</string>
+	<string name="check_mode">Check</string> 
+	<string name="cache_dir">Books/cache</string>
+	<string name="location">Location</string>
+	
+	<!-- file dialog -->
+	<string name="cant_read_folder">folder can\'t be read!</string>
+	<string name="nnew">New</string>
+	<string name="select">Select</string>
+	<string name="file_name">File name:</string>
+	<string name="cancel">Cancel</string>
+	<string name="create">Save</string>
+	<string name="no_data">No Data</string>
+	<string name="err">Error</string>
+	
+	<string name="PackageManagement">包管理</string>
+	
+	<!-- tabs -->
+	<string name="LLH_MH_Name">连环画-漫画</string>
+	<string name="XS_Name">小说</string>
+	<string name="Self_Name">我的</string>
+	
+	<!-- setting page -->
+	<string name="Setting">设置</string>
+	<string name="LocalMode">本地模式</string>
+	<string name="DownloadThreads">下载线程</string>
+	<string name="ItemsPerPage">每页个数</string>
+	<string-array name="saveMode">
+		<item>不存</item>
+		<item>本地</item>
+		<item>云端</item>
+	</string-array>
+	<string-array name="readMode">
+		<item>互联网</item>
+		<item>本地</item>
+		<item>云端</item>
+	</string-array>
+	<string name="CacheDir">缓存路径</string>
+	<string name="ClearCache">清缓存</string>
+	
+	<!-- login page -->
+	<string name="UserName">用户名</string>
+	<string name="Password">密码</string>
+	<string name="RetypePassword">密码再输一次</string>
+	<string name="SignUp">注册</string>
+	<string name="login">登入</string>
+</resources>

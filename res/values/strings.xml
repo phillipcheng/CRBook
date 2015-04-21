@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">RealAll</string>
+	
+	<string name="color">Color</string>
+	<string name="color_picker">Color picker</string>
+	<string name="linewidth_prompt">Choose a line width</string>
+	<string name="linewidth_picker">Choose a line width</string>
+	
+	<string name="MarkMyBook">Add_Fav</string>  
+	<string name="UnMarkMyBook">Del_Fav</string>
+	
+	<string name="loadPage">Load Page</string>
+	<string name="advertise_dialog_title">Advertise....</string>
+	<string name="advertise_dialog_prompt">Enter a name for this page</string>
+	<string name="rewardImageDesc">Reward</string>
+	<string name="teacher_mode">T</string>
+	<string name="student_mode">S</string>
+	<string name="no_such_mode">NoSuchMode</string>
+	
+	<string name="browse_mode">Browse</string>
+	<string name="draw_mode">Draw</string>
+	<string name="select_mode">Select</string>
+	<string name="script_mode">Script</string>
+	<string name="check_mode">Check</string> 
+	<string name="cache_dir">Books/cache</string>
+	
+	<string name="location">Location</string>
+	<string name="cant_read_folder">folder can\'t be read!</string>
+	<string name="nnew">New</string>
+	<string name="select">Select</string>
+	<string name="file_name">File name:</string>
+	<string name="cancel">Cancel</string>
+	<string name="create">Save</string>
+	<string name="no_data">No Data</string>
+	<string name="err">Error</string>
+	
+	<string name="PackageManagement">Manage Packages</string>
+	
+	<string name="LLH_MH_Name">PicSeries</string>
+	<string name="XS_Name">Novel</string>
+	<string name="Self_Name">My Books</string>
+	 
+	<!-- setting page -->
+	<!-- SNE setting -->
+	<string name="enableSNE">Enable SNE</string>
+	<string name="UseSNE">Connect SNE</string>
+	<string name="SNEIP">SNE IP:</string>
+	<string name="SNEPort">SNE Port:</string>
+	
+	<string name="DownloadThreads">Download Threads:</string>
+	<string name="ItemsPerPage">Items Per Page:</string>
+	<string name="Setting">Setting</string>
+	<string name="SaveTo">Save To:</string>
+	<string-array name="saveMode">
+		<item>No-Save</item>
+		<item>Local</item>
+		<item>Cloud</item>
+	</string-array>
+	<string name="LoadFrom">Load From:</string>
+	<string-array name="readMode">
+		<item>Internet</item>
+		<item>Local</item>
+		<item>Cloud</item>
+	</string-array>
+	<string name="CacheDir">Cache Dir</string>
+	<string name="ClearCache">Clear Cache</string>
+	<string name="Indexing">Index From:</string>
+	<string name="LocalMode">Local Mode</string> 
+	<string name="showCFSSettingDialog">Show CFS Setting</string>
+	<!-- login page -->
+	<string name="UserName">User Name:</string>
+	<string name="Password">Password:</string>
+	<string name="RetypePassword">Retype Password:</string>
+	<string name="SignUp">Sign Up:</string>
+	<string name="login">Login:</string>
+
+   
+</resources>

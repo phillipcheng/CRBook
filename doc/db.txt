@@ -1,0 +1,9 @@
+aws
+dbinstancename:crbookdbinstance
+username/password:crbook/crbookcrbook
+dbname:crbook
+
+local:
+postgres/postgres
+5432
+

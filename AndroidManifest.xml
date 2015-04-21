@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="cy.readall"
+    android:versionCode="43"
+    android:versionName="2.5.5" >
+    
+    <!-- To unlock screen before test -->
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD"/>
+    
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="22" >
+    </uses-sdk>
+
+    <application
+        android:name="cy.crbook.CRApplication"
+        android:allowBackup="false"
+        android:icon="@drawable/icon_cr"
+        android:label="@string/app_name"
+        android:largeHeap="true" >
+        
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+        
+        <activity
+            android:name="cy.crbook.ReadingBrowserActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="crbook.action.OPEN_CATEGORY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="cy.crbook.textbook.WebPageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme" >
+            <intent-filter>
+                <action android:name="crbook.action.OPEN_HTMLPAGE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="cy.crbook.picbook.PageEditActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyTheme" >
+            <intent-filter>
+                <action android:name="crbook.action.OPEN_PAGE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="crbook.action.OPEN_BOOK" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="cy.crbook.ColorPickerActivity"
+            android:label="@string/color_picker"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="crbook.action.PICK_COLOR" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="cy.crbook.picbook.LineWidthPickerActivity"
+            android:label="@string/linewidth_picker"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="crbook.action.PICK_LINE_WIDTH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="cy.crbook.CRSettingActivity"
+            android:label="@string/Setting"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="crbook.action.SETTING" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="cy.crbook.LoginActivity"
+            android:label="@string/login"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="crbook.action.login" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.dropbox.client2.android.AuthActivity"
+            android:configChanges="orientation|keyboard"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <!-- Change this to be db- followed by your app key -->
+                <data android:scheme="db-xmlo8qohmdzejjs" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="cy.filedialog.FileDialog"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="crbook.action.SELECT_DIR" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+        <!--  various cloud vendor login activity -->
+        <activity
+            android:name="cy.cfs.CFSConnectActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="cfs.connect.action" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

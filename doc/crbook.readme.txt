@@ -1,0 +1,36 @@
+
+
+我做了个Android(安卓)应用 (CRBook)
+1. read 6000+ lhh 连环画
+2. read 100000+ mh 漫画
+3. 自己做互动书(还不完善)
+
+我邀请你做beta用户。
+如果有老版本，现在不支持升级，希望删掉再装新的
+Google play 上叫 CRBook 中文叫 程韧读书
+
+安装后
+1. Option 里面有个 connect-dropbox
+	然后你用 crbookcrbook@hotmail.com
+	密码是 !QAZ@WSX#EDC
+	登入，然后Allow一下
+2. 然后Option里面有 download-dropbox, select and "install"
+	现在有2个文件
+	lhh（连环画）和mh（漫画）
+	安装每个大概5到10分钟。
+
+Current Version：2.4.5: 33
+https://play.google.com/store/apps/details?id=cy.crbook
+用pad看更爽
+
+没有安卓机器的可以再windows PC上装android模拟器
+http://www.bluestack.cn
+也能用android应用
+
+https://play.google.com/store/apps/details?id=cy.crbook
+version 2.4.8:36
+放到amazon云上了,不用import装一下就可以看了
+
+ReadAll
+https://itunes.apple.com/us/app/readall/id894922690?mt=8 iOS
+https://play.google.com/store/apps/details?id=cy.readall Android
