@@ -15,14 +15,12 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 import org.cld.util.StringUtil;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import snae.tmc.TMHttpClient;
 import snae.tmc.TMURL;
 import snae.tmc.TMURLManager;
-
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.MultiThreadedHttpConnectionManager;
 
 import android.app.Application;
 import android.content.Context;
@@ -81,6 +79,9 @@ public class CRApplication extends Application {
 	private String password=null;
 	private String sessionId=null;
 	private String deviceId = null;
+
+	//
+	private String wsUrl = "http://52.1.96.115:8080/";
 
 	MenuItem loginMenu=null;
 	
@@ -178,17 +179,27 @@ public class CRApplication extends Application {
 		SharedPreferences prefs = getSharedPreferences(APP_PREF_KEY, Context.MODE_PRIVATE);
 		String jsonPref = prefs.getString(APP_PREF_KEY, null);
 		if (jsonPref!=null){
-			JSONObject jobj = new JSONObject(jsonPref);
-			sneHost = jobj.getString(KEY_SNEHOST);
-			snePort = jobj.getInt(KEY_SNEPORT);
+			JSONObject jobj;
+			try {
+				jobj = new JSONObject(jsonPref);
+				sneHost = jobj.getString(KEY_SNEHOST);
+				snePort = jobj.getInt(KEY_SNEPORT);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public void savePreference(){
 		SharedPreferences prefs = getSharedPreferences(APP_PREF_KEY, Context.MODE_PRIVATE);
 		JSONObject jobj = new JSONObject();
-		jobj.put(KEY_SNEHOST, sneHost);
-		jobj.put(KEY_SNEPORT, snePort);
+		try {
+			jobj.put(KEY_SNEHOST, sneHost);
+			jobj.put(KEY_SNEPORT, snePort);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
 		prefs.edit().putString(APP_PREF_KEY, jobj.toString()).apply();
 	}
 	
@@ -496,5 +507,13 @@ public class CRApplication extends Application {
 
 	public void setTmurlMgr(TMURLManager tmurlMgr) {
 		this.tmMgr = tmurlMgr;
+	}
+
+	public String getWsUrl() {
+		return wsUrl;
+	}
+
+	public void setWsUrl(String wsUrl) {
+		this.wsUrl = wsUrl;
 	}
 }

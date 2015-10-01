@@ -47,6 +47,7 @@
 	<string name="UseSNE">Connect SNE</string>
 	<string name="SNEIP">SNE IP:</string>
 	<string name="SNEPort">SNE Port:</string>
+	<string name="WebServiceServer">WebServiceServer</string>
 	
 	<string name="DownloadThreads">Download Threads:</string>
 	<string name="ItemsPerPage">Items Per Page:</string>

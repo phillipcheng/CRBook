@@ -3,12 +3,9 @@ package cy.crbook.wsclient;
 import android.content.Context;
 import android.util.Log;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.util.*;
 
@@ -22,8 +19,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import snae.tmc.TMURL;
-import snae.tmc.TMURLManager;
-
 import cy.common.entity.Book;
 import cy.common.entity.Reading;
 import cy.common.entity.Volume;
@@ -33,10 +28,9 @@ import cy.crbook.persist.SQLitePersistManager;
 import cy.crbook.util.ImportReadingTask;
 
 public class RestClientPersistManager {
-	private static final String MAIN_REQUEST_URL = "http://ec2-54-187-167-132.us-west-2.compute.amazonaws.com:8080/" +
-			"crbookws/services/crbookrs";
 	
 	private static final String TAG = "RestClientPersistManager";
+	private static final String WS_NAME = "crbookws/services/crbookrs";
 	
 	private Context context;
 	private CRApplication myApp;
@@ -95,7 +89,7 @@ public class RestClientPersistManager {
 		userId = WSUtil.convertToEmptyParam(userId);
 
 		try {
-	        String strUrl = MAIN_REQUEST_URL + "/crbookrs/volumes/" + param + 
+	        String strUrl = this.myApp.getWsUrl() + WS_NAME + "/crbookrs/volumes/" + param + 
 	        		"/" + offset + "/" + limit + "/" + userId + "/" + type;
 	        String result = getStringRspFromUrl(strUrl);
 	        if (result!=null){
@@ -128,7 +122,7 @@ public class RestClientPersistManager {
 		}
 		userId = WSUtil.convertToEmptyParam(userId);
 		try {
-	        String strUrl = MAIN_REQUEST_URL + "/crbookrs/" + param + "/" + userId + "/" + type;
+	        String strUrl = this.myApp.getWsUrl() + WS_NAME + "/crbookrs/" + param + "/" + userId + "/" + type;
 	        String result = getStringRspFromUrl(strUrl); 
 	        if (result!=null){
 	        	return Long.parseLong(result);
@@ -157,7 +151,7 @@ public class RestClientPersistManager {
 		}
 		
 		try {
-	        String strUrl = MAIN_REQUEST_URL + "/crbookrs/volumes/" + getEncodedURL(id);
+	        String strUrl = this.myApp.getWsUrl() + WS_NAME + "/crbookrs/volumes/" + getEncodedURL(id);
 	        String result = getStringRspFromUrl(strUrl);
 	        if (result!=null){
 		        Volume v = new Volume();
@@ -179,7 +173,7 @@ public class RestClientPersistManager {
 		}
 		userId = WSUtil.convertToEmptyParam(userId);
 		try {
-	        String strUrl = MAIN_REQUEST_URL + "/crbookrs/books/" + param + "/" 
+	        String strUrl = this.myApp.getWsUrl() + WS_NAME + "/crbookrs/books/" + param + "/" 
 	        			+ offset + "/" + limit + "/" + userId + "/" + type;
 	        String result = getStringRspFromUrl(strUrl);
 	        if (result!=null){
@@ -210,7 +204,7 @@ public class RestClientPersistManager {
 		}
 		
 		try {
-	        String strUrl = MAIN_REQUEST_URL + "/crbookrs/books/" + getEncodedURL(id);
+	        String strUrl = this.myApp.getWsUrl() + WS_NAME + "/crbookrs/books/" + getEncodedURL(id);
 	        String result = getStringRspFromUrl(strUrl);
 	        if (result!=null){
 	        	Book b = new Book();
@@ -242,7 +236,7 @@ public class RestClientPersistManager {
 		try {
 			password = WSUtil.convertToEmptyParam(password);
 			userId = WSUtil.convertToEmptyParam(userId);
-			String strUrl = MAIN_REQUEST_URL + "/crbookrs/login/" + device + "/" + userId + "/" + password + "/" + stime;
+			String strUrl = this.myApp.getWsUrl() + WS_NAME + "/crbookrs/login/" + device + "/" + userId + "/" + password + "/" + stime;
 	        return getStringRspFromUrl(strUrl);
 		} catch (Exception e) {
 			Log.e(TAG, "", e);
@@ -252,7 +246,7 @@ public class RestClientPersistManager {
 
 	public boolean logout(String sessionId, String etime) {
 		try {
-			String strUrl = MAIN_REQUEST_URL + "/crbookrs/logout/" + sessionId + "/" + etime;
+			String strUrl = this.myApp.getWsUrl() + WS_NAME + "/crbookrs/logout/" + sessionId + "/" + etime;
 	        String ret = getStringRspFromUrl(strUrl);
 	        if (ret!=null){
 	        	return Boolean.parseBoolean(ret);
@@ -267,7 +261,7 @@ public class RestClientPersistManager {
 
 	public String addUser(String user, String pass) {
 		try {
-			String strUrl = MAIN_REQUEST_URL + "/crbookrs/signup/" + user + "/" + pass;
+			String strUrl = this.myApp.getWsUrl() + WS_NAME + "/crbookrs/signup/" + user + "/" + pass;
 			return getStringRspFromUrl(strUrl);
 		} catch (Exception e) {
 			Log.e(TAG, "", e);
@@ -305,10 +299,10 @@ public class RestClientPersistManager {
 		}
 	}
 	public int addMyReadings(String userId, List<String> ids){
-		return intReturnFromPutMethod(MAIN_REQUEST_URL + "/crbookrs/myreadings/add/", userId, ids);
+		return intReturnFromPutMethod(this.myApp.getWsUrl() + WS_NAME + "/crbookrs/myreadings/add/", userId, ids);
 	}
 	
 	public int deleteMyReadings(String userId, List<String> ids){
-		return intReturnFromPutMethod(MAIN_REQUEST_URL + "/crbookrs/myreadings/delete/", userId, ids);
+		return intReturnFromPutMethod(this.myApp.getWsUrl() + WS_NAME + "/crbookrs/myreadings/delete/", userId, ids);
 	}
 }

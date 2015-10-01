@@ -89,6 +89,30 @@
         android:layout_height="wrap_content" >
 
         <TableRow
+            android:id="@+id/TableRow03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/TextView04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:nextFocusLeft="@+id/TextView04"
+                android:nextFocusUp="@+id/TextView04"
+                android:text="@string/WebServiceServer" />
+
+            <EditText
+                android:id="@+id/WebServiceServer"
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" >
+
+                <requestFocus />
+            </EditText>
+        </TableRow>
+
+        <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
@@ -205,6 +229,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/showCFSSettingDialog" />
         </TableRow>
+
     </TableLayout>
 
 </LinearLayout>

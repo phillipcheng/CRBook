@@ -34,6 +34,7 @@ public class CRSettingActivity extends Activity {
 	EditText snePortET=null;
 	Button sneProxyBtn = null;
 	
+	EditText webServiceServerET = null;
 	EditText downloadThreadNumET=null;
 	EditText itemsPerPageET=null;
 	CheckBox localModeCB = null;
@@ -91,6 +92,8 @@ public class CRSettingActivity extends Activity {
 			}
 		});
 		/////// end of TM ////
+		webServiceServerET = (EditText) findViewById(R.id.WebServiceServer);
+		webServiceServerET.setText(myApp.getWsUrl());
 		
 		downloadThreadNumET = (EditText) findViewById(R.id.downloadThreadNum);
 		downloadThreadNumET.setText(myApp.getThreadNum()+"");
@@ -206,6 +209,8 @@ public class CRSettingActivity extends Activity {
 		CRApplication myApp = (CRApplication) this.getApplication();
 		boolean quit=true;
 		if (keyCode == KeyEvent.KEYCODE_BACK){
+			String wsUrl = this.webServiceServerET.getText().toString();
+			myApp.setWsUrl(wsUrl);
 			String threadNumText = downloadThreadNumET.getText().toString();
 			try {
 				int threadNum = Integer.parseInt(threadNumText);
