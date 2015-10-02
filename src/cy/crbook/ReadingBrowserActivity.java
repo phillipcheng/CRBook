@@ -355,6 +355,7 @@ public class ReadingBrowserActivity extends FragmentActivity implements
 				ReadingBrowseFragment rbFrag = (ReadingBrowseFragment) mAppSectionsPagerAdapter.getItem(this.activeFragId);
 				Set<Reading> rl = rbFrag.getReadingGridAdapter().getSelectedReadings();
 				BookDownload bdl = new BookDownload((CRApplication) this.getApplication());
+				bdl.downloadAllASync(rl);
 			}
 		}
 		return false;

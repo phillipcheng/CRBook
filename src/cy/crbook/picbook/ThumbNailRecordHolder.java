@@ -82,8 +82,6 @@ public class ThumbNailRecordHolder extends RecordHolder implements CallbackOp{
 			overlayVolume.setVisibility(View.GONE);
 		}
 		setCheckBoxName(chkbox, name, r);
-		Bitmap bm = null;
-		
 		if (r.getState()==Reading.STATE_ONLINE){
 			stateImg.setImageResource(R.drawable.cloud);
 		}else if (r.getState()==Reading.STATE_OFFLINE){

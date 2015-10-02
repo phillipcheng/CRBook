@@ -16,7 +16,7 @@ import android.util.Log;
 
 public class DownloadImageJobManager {
 	
-	private static final String TAG = "DownloadImageTaskManager";
+	private static final String TAG = DownloadImageJobManager.class.getSimpleName();
 	
 	//notification
 	NotificationManager notificationManager;
@@ -56,7 +56,7 @@ public class DownloadImageJobManager {
 	}
 	
 	private void submitJob(String fileKey, DownloadImageJob dij){
-		Log.i(TAG, "job sumbitted:" + fileKey + ", with priority:" + dij.getPriority());
+		Log.i(TAG, "job sumbitted:" + dij);
 		Future f = myApp.submit(dij);
 		submittedJobs.put(fileKey, dij);//replace it
 		submittedFutures.put(fileKey, f);//replace it

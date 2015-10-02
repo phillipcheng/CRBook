@@ -26,6 +26,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Process;
 import android.util.Log;
@@ -68,6 +69,29 @@ public class CRApplication extends Application {
 	public static final int READ_FROM_FILE=1;
 	public static final int READ_FROM_CLOUD=2;
 	private int readMode=READ_INTERNET;
+	
+	public String getReadMode(int mode){
+		if (mode == READ_INTERNET){
+			return "internet";
+		}else if (mode==READ_FROM_FILE){
+			return "file";
+		}else if (mode==READ_FROM_CLOUD){
+			return "cloud";
+		}else{
+			return "unsupported";
+		}
+	}
+	public String getSaveMode(int mode){
+		if (mode == NO_SAVE){
+			return "no save";
+		}else if (mode==SAVE_TO_FILE){
+			return "file";
+		}else if (mode==SAVE_TO_CLOUD){
+			return "cloud";
+		}else{
+			return "unsupported";
+		}
+	}
 	//
 	private int threadNum=5;
 	//show my-reading or all-reading
@@ -402,7 +426,15 @@ public class CRApplication extends Application {
 		pageSize = ps;
 	}
 	
+	private boolean isNetworkConnected() {
+	  ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	  return cm.getActiveNetworkInfo()!=null;
+	}
+	
 	public boolean getLocalMode(){
+		if (!isNetworkConnected()){
+			return true;
+		}
 		return localMode;
 	}
 

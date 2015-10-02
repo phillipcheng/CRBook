@@ -1,10 +1,8 @@
 package cy.crbook.util;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
-import cy.cfs.CFS;
 import cy.cfs.CallbackOp;
 import cy.crbook.CRApplication;
 import cy.crbook.FileCache;
@@ -12,7 +10,7 @@ import cy.readall.R;
 
 public class DownloadImageJob implements ComparableJob {
 	
-	private static final String TAG = "DownloadImageJob";
+	private static final String TAG = DownloadImageJob.class.getSimpleName();
 	
 	//
 	CRApplication myApp;
@@ -45,6 +43,12 @@ public class DownloadImageJob implements ComparableJob {
     	this.priority = priority;
     	this.saveMode = saveMode;
     }
+	
+	public String toString(){
+		return String.format("width:%d, height:%d, fileKey:%s, url:%s, referer:%s, callback:%s, saveMode:%s, priority:%d", 
+				lwidth, lheight, fileKey, url, referer, 
+				dipp.getClass().getSimpleName(), myApp.getSaveMode(myApp.getSaveMode()), priority);
+	}
 
 	@Override
 	public void run(){
@@ -57,8 +61,10 @@ public class DownloadImageJob implements ComparableJob {
 	    		}else if (saveMode == CRApplication.SAVE_TO_CLOUD){
 	    			FileCache.saveCloud(bmp, fileKey, myApp);
 	    		}
+	    		Log.i(TAG, String.format("success downloaded job: %s",  this.toString()));
 	    		dipp.onSuccess(ppParam, bmp);
 	    	}else{
+	    		Log.e(TAG, String.format("failed to download job: %s",  this.toString()));
 	    		bmp = BitmapFactory.decodeResource(myApp.getResources(), R.drawable.empty_cover);
 	    		dipp.onFailure(ppParam, bmp);
 	    	}

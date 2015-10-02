@@ -21,7 +21,7 @@ import android.util.Log;
 
 public class ImageUtil {
 
-	private static final String TAG = "ImageUtil";
+	private static final String TAG = ImageUtil.class.getSimpleName();
 	
 	public static final String ASSET="asset:";
 	public static final String CONTENT="content:";
@@ -75,8 +75,10 @@ public class ImageUtil {
 		        	return input;
 		        }else if (connection.getResponseCode()==HttpURLConnection.HTTP_UNAUTHORIZED){
 		        	context.sneQuotaUsedup();
+		        	Log.e(TAG, String.format("not ok http code: %d", connection.getResponseCode()));
 		        	return null;
 		        }else{
+		        	Log.e(TAG, String.format("not ok http code: %d", connection.getResponseCode()));
 		        	return null;
 		        }
 		    } catch (IOException ioe) {
@@ -184,20 +186,23 @@ public class ImageUtil {
 		int type = ImageUtil.getImageUriType(coverUri);
 		if (type == ImageUtil.IMAGE_URL_TYPE_URL){
 			String fileKey = FileCache.generateKey(r, pageNum);
-			if (myApp.getReadMode()==CRApplication.READ_FROM_FILE){//get from local fs
-				File f = new File(fileKey);
-				if (f.exists()){
-					bm = BitmapFactory.decodeFile(f.getAbsolutePath());
-					dpp.onSuccess(dppParam, bm);
-				}else{
-					Log.e(TAG, String.format("file %s not found in 'save to file' mode.", fileKey));
+			Log.d(TAG, String.format("get image from url %s, read mode: %s",  coverUri, myApp.getReadMode(myApp.getReadMode())));
+			//try file first anyway
+			File f = new File(fileKey);
+			if (f.exists()||myApp.getLocalMode()){
+				bm = BitmapFactory.decodeFile(f.getAbsolutePath());
+				dpp.onSuccess(dppParam, bm);
+			}else{
+				Log.e(TAG, String.format("file %s not found in 'save to file' mode.", fileKey));
+				if (myApp.getReadMode()==CRApplication.READ_FROM_CLOUD){//get from cloud
+					fileKey = fileKey.substring(FileCache.getCacheRoot().length());
+					CFS.asyncGetContent(myApp.getUserid(), fileKey, dppParam, dpp, myApp, width, height);
+				}else if (myApp.getReadMode() == CRApplication.READ_INTERNET){//get from internet
+					DownloadImageJobManager.singleton.submitDownloadImageJob(dpp, dppParam, myApp, r.getCat(), fileKey, 
+							width, height, coverUri, myApp.getTemplate(r.getId()).getReferer(), false);
+				}else if (myApp.getReadMode() == CRApplication.READ_FROM_FILE){
+					Log.e(TAG, String.format("read mode from file but failed for url: %s", coverUri));
 				}
-			}else if (myApp.getReadMode()==CRApplication.READ_FROM_CLOUD){//get from cloud
-				fileKey = fileKey.substring(FileCache.getCacheRoot().length());
-				CFS.asyncGetContent(myApp.getUserid(), fileKey, dppParam, dpp, myApp, width, height);
-			}else{//get from internet
-				DownloadImageJobManager.singleton.submitDownloadImageJob(dpp, dppParam, myApp, r.getCat(), fileKey, 
-						width, height, coverUri, myApp.getTemplate(r.getId()).getReferer(), false);
 			}
 		}else{
 			bm = ImageUtil.getBitmap(myApp, myApp.getTemplate(r.getId()).getReferer(), coverUri, 
