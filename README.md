@@ -1,1 +1,1 @@
-# CRBook
+# CRBook Android Client
